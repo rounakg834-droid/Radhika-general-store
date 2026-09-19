@@ -210,9 +210,9 @@
             </button>
 
 
-            <a href="index.html" class="back">
-                ← Continue Shopping
-            </a>
+            <a href="../index.html" class="back">
+    ← Continue Shopping
+</a>
 
         </div>
 
@@ -291,7 +291,7 @@ if (!product) {
         let quantity = 1;
 
 
-        function increaseQuantity() {
+        window.increaseQuantity = function() {
 
             quantity++;
 
@@ -301,7 +301,7 @@ if (!product) {
         }
 
 
-        function decreaseQuantity() {
+        window.decreaseQuantity = function() {
 
             if (quantity > 1) {
 
@@ -315,7 +315,7 @@ if (!product) {
         }
 
 
-        function addToCart() {
+        window.addToCart = function() {
 
             if (!product) return;
 
