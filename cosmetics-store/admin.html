@@ -388,27 +388,65 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-function deleteProduct(productId) {
+async function deleteProduct(productId) {
 
     if (!confirm("Kya aap ye product delete karna chahte hain?")) {
         return;
     }
 
-    let products =
-        JSON.parse(localStorage.getItem("products")) || [];
+    try {
 
-    products = products.filter(function (product) {
-        return product.id !== productId;
-    });
+        const { db } =
+            await import("./firebase-config.js");
 
-    localStorage.setItem(
-        "products",
-        JSON.stringify(products)
-    );
+        const {
+            collection,
+            getDocs,
+            deleteDoc
+        } =
+            await import(
+                "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js"
+            );
 
-    alert("Product deleted successfully!");
+        const snapshot = await getDocs(
+            collection(db, "products")
+        );
 
-    location.reload();
+        let deleted = false;
+
+        for (const productDoc of snapshot.docs) {
+
+            const product = productDoc.data();
+
+            if (String(product.id) === String(productId)) {
+
+                await deleteDoc(productDoc.ref);
+
+                deleted = true;
+
+                break;
+            }
+        }
+
+        if (deleted) {
+
+            alert("Product deleted successfully!");
+
+            location.reload();
+
+        } else {
+
+            alert("Product nahi mila!");
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Product delete nahi ho paya!");
+
+    }
 }
 </script>
 </body>
