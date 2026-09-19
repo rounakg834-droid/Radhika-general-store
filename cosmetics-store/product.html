@@ -219,64 +219,73 @@
     </div>
 
 
-    <script>
+    <script type="module">
 
         const urlParams = new URLSearchParams(window.location.search);
 
-        const productId =
-            Number(urlParams.get("id"));
+const productId = Number(urlParams.get("id"));
 
+// Firebase connect
+const { db } = await import("./firebase-config.js");
 
-        const products =
-            JSON.parse(localStorage.getItem("products")) || [];
+const { collection, getDocs } =
+    await import("https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js");
 
+// Firebase se products lao
+const snapshot = await getDocs(
+    collection(db, "products")
+);
 
-        const product =
-            products.find(function (item) {
+let product = null;
 
-                return item.id === productId;
+snapshot.forEach(function(doc) {
 
-            });
+    const data = doc.data();
 
+    if (String(data.id) === String(productId)) {
+        product = data;
+    }
 
-        if (!product) {
+});
 
-            document.body.innerHTML = `
-                <h2 style="text-align:center;margin-top:100px;">
-                    Product Not Found
-                </h2>
+if (!product) {
 
-                <p style="text-align:center;">
-                    <a href="index.html">
-                        Back to Store
-                    </a>
-                </p>
-            `;
+    document.body.innerHTML = `
+        <h2 style="text-align:center;margin-top:100px;">
+            Product Not Found
+        </h2>
 
-        } else {
+        <p style="text-align:center;">
+            <a href="../index.html">
+                Back to Store
+            </a>
+        </p>
+    `;
 
-            document.getElementById("productImage").src =
-                product.image;
+} else {
 
-            document.getElementById("brand").textContent =
-                product.brand;
+    document.getElementById("productImage").src =
+        product.image;
 
-            document.getElementById("productName").textContent =
-                product.name;
+    document.getElementById("brand").textContent =
+        product.brand;
 
-            document.getElementById("description").textContent =
-                product.description;
+    document.getElementById("productName").textContent =
+        product.name;
 
-            document.getElementById("price").textContent =
-                "₹" + product.price;
+    document.getElementById("description").textContent =
+        product.description;
 
-            document.getElementById("oldPrice").textContent =
-                "₹" + product.oldPrice;
+    document.getElementById("price").textContent =
+        "₹" + product.price;
 
-            document.getElementById("category").textContent =
-                product.category;
+    document.getElementById("oldPrice").textContent =
+        "₹" + product.oldPrice;
 
-        }
+    document.getElementById("category").textContent =
+        product.category;
+
+}
 
 
         let quantity = 1;
