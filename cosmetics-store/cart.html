@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart | Radhika General Store</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f8f8;
+            color: #222;
+        }
+
+        header {
+            background: white;
+            padding: 20px 6%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            font-size: 25px;
+        }
+
+        header p {
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .cart-container {
+            width: 88%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .cart-container h2 {
+            margin-bottom: 25px;
+        }
+
+        .cart-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            min-height: 200px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px 20px;
+            color: #777;
+        }
+
+        .shop-btn {
+            margin-top: 20px;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 25px;
+            background: #111;
+            color: white;
+            cursor: pointer;
+        }
+
+        .shop-btn:hover {
+            background: #d63384;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .item-info p {
+            color: #777;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+        }
+
+        .remove {
+            border: none;
+            background: #ffe5e5;
+            color: #d00;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .total {
+            text-align: right;
+            margin-top: 25px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .checkout {
+            display: block;
+            margin-left: auto;
+            margin-top: 15px;
+            padding: 14px 30px;
+            background: #d63384;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .cart-item {
+                flex-wrap: wrap;
+            }
+
+            .cart-item img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .item-info {
+                min-width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Radhika General Store</h1>
+        <p>Beauty • Cosmetics • Accessories</p>
+    </header>
+
+    <div class="cart-container">
+
+        <h2>🛒 Your Shopping Cart</h2>
+
+        <div class="cart-box">
+
+            <div id="cart-items"></div>
+
+            <div id="cart-total"></div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const checkoutButton = document.querySelector(".checkout");
+
+    if (checkoutButton) {
+        checkoutButton.addEventListener("click", function () {
+            window.location.href = "checkout.html";
+        });
+    }
+
+});
+</script>
+
+</body>
+</html>

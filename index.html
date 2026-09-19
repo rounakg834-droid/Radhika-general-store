@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Radhika General Store | Beauty & Cosmetics</title>
+
+    <style>
+        .hero-banner {
+    width: calc(100% - 40px);
+    height: 430px;
+    margin: 30px auto;
+    border-radius: 18px;
+    overflow: hidden;
+
+    background-image: url("./hero-lipstick.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #222;
+        }
+
+        /* TOP OFFER */
+        .top-bar {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 6%;
+            border-bottom: 1px solid #eee;
+            gap: 20px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+        }
+
+        .logo p {
+            font-size: 12px;
+            color: #777;
+            margin-top: 4px;
+        }
+
+        .search {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 13px 18px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-buttons button {
+            border: none;
+            background: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #d63384;
+        }
+
+        /* HERO */
+        .hero {
+            margin: 30px 6%;
+            min-height: 420px;
+            border-radius: 20px;
+            background: linear-gradient(120deg, #fce4ec, #fff3f7);
+            display: flex;
+            align-items: center;
+            padding: 60px;
+        }
+
+        .hero-content {
+            max-width: 550px;
+        }
+
+        .hero-content span {
+            color: #d63384;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            margin: 15px 0;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 17px;
+        }
+
+        .shop-btn {
+            background: #111;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .shop-btn:hover {
+            background: #d63384;
+        }
+
+        /* SECTION */
+        .section {
+            padding: 50px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+        }
+
+        .section-title p {
+            color: #777;
+            margin-top: 8px;
+        }
+
+        /* CATEGORIES */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .category {
+            text-align: center;
+            padding: 25px 10px;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .category .icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .category h3 {
+            font-size: 15px;
+        }
+
+        .products {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.product {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+}
+
+.product-image {
+    height: 220px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+        .product {
+            border: 1px solid #eee;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .product-image {
+    height: 230px;
+    background: #f7f7f7;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+    
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-info small {
+            color: #888;
+        }
+
+        .product-info h3 {
+            margin: 8px 0;
+            font-size: 17px;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 13px;
+            margin-left: 7px;
+        }
+
+        .add-cart {
+            width: 100%;
+            margin-top: 15px;
+            padding: 11px;
+            border: none;
+            background: #111;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .add-cart:hover {
+            background: #d63384;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111;
+            color: white;
+            padding: 50px 6%;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: #bbb;
+            margin: 8px 0;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                flex-wrap: wrap;
+            }
+
+            .search {
+                order: 3;
+                max-width: 100%;
+                flex-basis: 100%;
+            }
+
+            .hero-content h2 {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                overflow-x: auto;
+                justify-content: flex-start;
+                gap: 20px;
+            }
+
+            .hero {
+                padding: 35px 25px;
+                min-height: 350px;
+            }
+
+            .hero-content h2 {
+                font-size: 32px;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.product {
+    width: 100%;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+}
+
+.product-image {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-info h3 {
+    margin: 8px 0;
+}
+
+.add-cart {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+}
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    header {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .header-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    nav {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px;
+    }
+
+    nav a {
+        font-size: 14px;
+        margin: 0 8px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 10px;
+    }
+
+    .product-image {
+        height: 180px;
+    }
+
+    .product-info {
+        padding: 12px;
+    }
+
+    .product-info h3 {
+        font-size: 16px;
+    }
+
+    .product-info p {
+        font-size: 13px;
+    }
+
+    .price {
+        font-size: 17px;
+    }
+
+    .add-cart,
+    .wishlist-btn {
+        width: 100%;
+        margin-top: 6px;
+        padding: 9px;
+        font-size: 13px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .products {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .product-image {
+        height: 150px;
+    }
+
+    .product-info {
+        padding: 10px;
+    }
+
+    .product-info h3 {
+        font-size: 14px;
+    }
+
+    .product-info p {
+        font-size: 12px;
+    }
+
+    .old-price {
+        font-size: 12px;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+}
+/* =========================
+   5 BANNER HERO SLIDER
+========================= */
+
+.hero-slider {
+    position: relative;
+    width: calc(100% - 40px);
+    height: 300px;
+    margin: 30px auto;
+    border-radius: 18px;
+    background: #fcebf2;
+    
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-position: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.7s ease;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-slide-content {
+    width: 45%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 50px;
+}
+
+.hero-slide-content span {
+    color: #e91e63;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero-slide-content h2 {
+    font-size: 42px;
+    line-height: 1.1;
+    margin: 0 0 15px;
+}
+
+.hero-slide-content p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.hero-slide-content button {
+    width: 120px;
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 25px;
+
+    background: #111;
+    color: white;
+
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hero-slide-content button:hover {
+    background: #e91e63;
+}
+
+
+/* ARROWS */
+
+.hero-prev,
+.hero-next {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.85);
+    color: #111;
+
+    cursor: pointer;
+    font-size: 18px;
+
+    z-index: 5;
+}
+
+.hero-prev {
+    left: 20px;
+}
+
+.hero-next {
+    right: 20px;
+}
+
+
+/* DOTS */
+
+.hero-dots {
+    position: absolute;
+
+    bottom: 18px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 8px;
+
+    z-index: 5;
+}
+
+.hero-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.hero-dot.active {
+    opacity: 1;
+    transform: scale(1.3);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .hero-slider {
+    height: 380px;
+    width: calc(100% - 20px);
+}
+
+    .hero-slide-content {
+        width: 65%;
+        padding: 25px;
+    }
+
+    .hero-slide-content h2 {
+        font-size: 28px;
+    }
+
+    .hero-slide-content p {
+        font-size: 13px;
+    }
+
+}
+/* FINAL HERO SLIDER FIX */
+
+.hero-slider {
+    height: 430px !important;
+    width: calc(100% - 40px) !important;
+    margin: 30px auto !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.hero-slide {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.simple-hero {
+    width: calc(100% - 40px);
+    height: 430px;
+    margin: 30px auto;
+    border-radius: 18px;
+    overflow: hidden;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+}
+
+.simple-hero-content {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.simple-hero-content span {
+    color: #e91e63;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.simple-hero-content h1 {
+    font-size: 42px;
+    line-height: 1.1;
+    margin: 0 0 18px;
+}
+
+.simple-hero-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 450px;
+    margin-bottom: 25px;
+}
+
+.simple-hero-content button {
+    width: fit-content;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #111;
+    color: white;
+    cursor: pointer;
+}
+
+.simple-hero-content button:hover {
+    background: #e91e63;
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP OFFER -->
+    <div class="top-bar">
+        Free delivery on selected orders | Special offers available
+    </div>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="logo">
+            <h1>Radhika General Store</h1>
+            <p>Beauty • Cosmetics • Accessories</p>
+        </div>
+
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Search cosmetics, skincare, bangles...">
+        </div>
+
+                <div class="header-buttons">
+
+    <button onclick="window.location.href='cosmetics-store/admin.html'">
+    + Add Product
+</button>
+
+    <button onclick="window.location.href='cosmetics-store/wishlist.html'">
+    ♡ Wishlist
+</button>
+
+    <button class="cart-button" onclick="window.location.href='cosmetics-store/cart.html'">
+    🛒 Cart
+</button>
+
+</div>
+   
+
+    </header>
+
+    <!-- NAVIGATION -->
+  <nav>
+    <a href="index.html">Home</a>
+
+    <a href="#products" onclick="filterCategory('Makeup'); return false;">
+        Makeup
+    </a>
+
+    <a href="#products" onclick="filterCategory('Skincare'); return false;">
+        Skincare
+    </a>
+
+    <a href="#products" onclick="filterCategory('Hair Care'); return false;">
+        Hair Care
+    </a>
+
+    <a href="#products" onclick="filterCategory('Fragrance'); return false;">
+        Fragrance
+    </a>
+
+    <a href="#products" onclick="filterCategory('Nail Care'); return false;">
+        Nails
+    </a>
+
+    <a href="#products" onclick="filterCategory('Bangles'); return false;">
+        Bangles
+    </a>
+
+    <a href="#products" onclick="filterCategory('Offers'); return false;">
+        Offers
+    </a>
+</nav>
+              
+<section class="hero-banner">
+    <img src="cosmetics-store/hero-lipstick.png" alt="Radhika General Store Beauty Banner">
+</section>
+
+    <!-- CATEGORIES -->
+    <section class="section">
+
+        <div class="section-title">
+            <h2>Shop By Category</h2>
+            <p>Find your favourite beauty products</p>
+        </div>
+
+        <div class="categories">
+
+            <<div class="category" onclick="filterCategory('Makeup')">
+    <div class="icon">💄</div>
+    <h3>Makeup</h3>
+</div>
+
+          <div class="category" onclick="filterCategory('Skincare')">
+    <div class="icon">🧴</div>
+    <h3>Skincare</h3>
+</div>
+<div class="category" onclick="filterCategory('Hair Care')">
+    <div class="icon">💇</div>
+    <h3>Hair Care</h3>
+</div>
+
+            <div class="category" onclick="filterCategory('Fragrance')">
+    <div class="icon">🌸</div>
+    <h3>Fragrance</h3>
+</div>
+
+            <div class="category" onclick="filterCategory('Nail Care')">
+    <div class="icon">💅</div>
+    <h3>Nail Care</h3>
+</div>
+
+            <div class="category" onclick="filterCategory('Bangles')">
+    <div class="icon">💍</div>
+    <h3>Bangles</h3>
+ </div>
+
+    </section>
+<!-- PRODUCTS -->
+<section class="section">
+
+    <div class="section-title">
+        <h2>Best Sellers</h2>
+        <p>Popular products from our store</p>
+    </div>
+
+    <div class="products" id="products"></div>
+
+      
+
+    </div>
+
+</section>
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+                <h3>Radhika General Store</h3>
+                <p>Beauty, Cosmetics & Accessories</p>
+                <p>Quality products for everyone.</p>
+            </div>
+
+            <div>
+                <h3>Customer Service</h3>
+                <p>Contact Us</p>
+                <p>Shipping & Delivery</p>
+                <p>Return Policy</p>
+            </div>
+
+            <div>
+                <h3>Visit Our Store</h3>
+                <p>Meena Bazar Chowk, Ballia</p>
+                <p>Open: 11 AM - 8 PM</p>
+            </div>
+
+        </div>
+
+    </footer>
+<script src="cosmetics-store/script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+    const { db } = await import("./cosmetics-store/firebase-config.js");
+
+    const { collection, getDocs } =
+        await import("https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js");
+
+    const productContainer =
+        document.querySelector(".products");
+
+    if (!productContainer) return;
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    productContainer.innerHTML = "";
+
+    snapshot.forEach(function (doc) {
+
+        const product = doc.data();
+
+        const productBox = document.createElement("div");
+
+        productBox.className = "product";
+
+        productBox.setAttribute(
+            "data-category",
+            product.category
+        );
+
+        productBox.innerHTML = `
+            <div
+                class="product-image"
+                onclick="window.location.href='cosmetics-store/product.html?id=${product.id}'"
+                style="cursor:pointer;"
+            >
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                >
+            </div>
+
+            <div class="product-info">
+
+                <small>${product.brand}</small>
+
+                <h3
+                    onclick="window.location.href='cosmetics-store/product.html?id=${product.id}'"
+                    style="cursor:pointer;"
+                >
+                    ${product.name}
+                </h3>
+
+                <p>${product.description}</p>
+
+                <span class="price">
+                    ₹${product.price}
+                </span>
+
+                <span class="old-price">
+                    ₹${product.oldPrice}
+                </span>
+
+                <button
+                    class="add-cart"
+                    onclick="addSavedProductToCart(this)"
+                >
+                    🛒 Add to Cart
+                </button>
+
+                <button
+                    class="wishlist-btn"
+                    onclick="addToWishlist(this)"
+                >
+                    ❤️ Wishlist
+                </button>
+
+            </div>
+        `;
+
+        productContainer.appendChild(productBox);
+
+    });
+
+});
+</script>
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            function () {
+
+                const searchText =
+                    searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+                const products =
+                    document.querySelectorAll(".product");
+
+                let found = false;
+
+                products.forEach(function (product) {
+
+                    const productName =
+                        product.querySelector("h3");
+
+                    if (!productName) return;
+
+                    const name =
+                        productName.textContent
+                        .toLowerCase();
+
+                    if (name.includes(searchText)) {
+
+                        product.style.display = "";
+                        found = true;
+
+                    } else {
+
+                        product.style.display = "none";
+
+                    }
+
+                });
+
+                let notFound =
+                    document.getElementById("notFound");
+
+                if (!notFound && productContainer) {
+
+                    notFound =
+                        document.createElement("p");
+
+                    notFound.id = "notFound";
+
+                    notFound.style.textAlign =
+                        "center";
+
+                    notFound.style.fontSize =
+                        "20px";
+
+                    notFound.style.margin =
+                        "30px";
+
+                    productContainer.appendChild(
+                        notFound
+                    );
+
+                }
+
+                if (
+                    searchText !== "" &&
+                    !found
+                ) {
+
+                    notFound.textContent =
+                        "🔍 Product Not Found";
+
+                } else {
+
+                    notFound.textContent = "";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================
+       CATEGORY FILTER
+    ========================= */
+
+    const categories =
+        document.querySelectorAll(".category");
+
+    categories.forEach(function (category) {
+
+        category.addEventListener(
+            "click",
+            function () {
+
+                const selectedCategory =
+                    category
+                    .querySelector("h3")
+                    .textContent
+                    .trim();
+
+                const products =
+                    document.querySelectorAll(".product");
+
+                let found = false;
+
+                products.forEach(function (product) {
+
+                    const productCategory =
+                        product.getAttribute(
+                            "data-category"
+                        );
+
+                    if (
+                        productCategory ===
+                        selectedCategory
+                    ) {
+
+                        product.style.display = "";
+                        found = true;
+
+                    } else {
+
+                        product.style.display = "none";
+
+                    }
+
+                });
+
+                let notFound =
+                    document.getElementById("notFound");
+
+                if (!notFound && productContainer) {
+
+                    notFound =
+                        document.createElement("p");
+
+                    notFound.id = "notFound";
+
+                    notFound.style.textAlign =
+                        "center";
+
+                    notFound.style.fontSize =
+                        "20px";
+
+                    notFound.style.margin =
+                        "30px";
+
+                    productContainer.appendChild(
+                        notFound
+                    );
+
+                }
+
+                if (!found) {
+
+                    notFound.textContent =
+                        "🔍 No products found in " +
+                        selectedCategory;
+
+                } else {
+
+                    notFound.textContent = "";
+
+                }
+
+                if (productContainer) {
+
+                    productContainer.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    });
+
+});
+
+
+/* =========================
+   ADD SAVED PRODUCT TO CART
+========================= */
+
+async function addSavedProductToCart(productId) {
+
+    // Firebase se products lao
+    const { db } = await import("./cosmetics-store/firebase-config.js");
+
+    const { collection, getDocs } =
+        await import("https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js");
+
+    const snapshot = await getDocs(
+        collection(db, "products")
+    );
+
+    let product = null;
+
+    snapshot.forEach(function(doc) {
+
+        const data = doc.data();
+
+        if (String(data.id) === String(productId)) {
+            product = data;
+        }
+
+    });
+
+    if (!product) {
+        alert("Product nahi mila!");
+        return;
+    }
+
+    // Existing cart
+    let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Check product already in cart
+    const existingProduct =
+        cart.find(function(item) {
+            return item.name === product.name;
+        });
+
+    if (existingProduct) {
+
+        existingProduct.quantity++;
+
+    } else {
+
+        cart.push({
+            name: product.name,
+            price: Number(product.price),
+            image: product.image,
+            quantity: 1
+        });
+
+    }
+
+    // Save cart
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    // Cart count update
+    if (typeof updateCartCount === "function") {
+        updateCartCount();
+    }
+
+    alert("Product added to cart!");
+}
+</script>
+<script>
+
+let currentHeroSlide = 0;
+
+const heroSlides = document.querySelectorAll(".hero-slide");
+const heroDots = document.querySelectorAll(".hero-dot");
+
+function showHeroSlide(index) {
+
+    if (index >= heroSlides.length) {
+        currentHeroSlide = 0;
+    } 
+    else if (index < 0) {
+        currentHeroSlide = heroSlides.length - 1;
+    } 
+    else {
+        currentHeroSlide = index;
+    }
+
+    heroSlides.forEach(function(slide) {
+        slide.classList.remove("active");
+    });
+
+    heroDots.forEach(function(dot) {
+        dot.classList.remove("active");
+    });
+
+    heroSlides[currentHeroSlide].classList.add("active");
+    heroDots[currentHeroSlide].classList.add("active");
+}
+
+function changeHeroSlide(direction) {
+    showHeroSlide(currentHeroSlide + direction);
+}
+
+function goToHeroSlide(index) {
+    showHeroSlide(index);
+}
+
+setInterval(function() {
+    showHeroSlide(currentHeroSlide + 1);
+}, 5000);
+
+</script>
+</body>
+</html>

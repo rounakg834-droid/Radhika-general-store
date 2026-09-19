@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | Radhika General Store</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        header {
+            background: white;
+            padding: 22px 6%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        header p {
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .checkout-container {
+            width: 88%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .checkout-container > h2 {
+            margin-bottom: 25px;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 25px;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .box h3 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .payment {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background: #fff7fb;
+        }
+
+        .payment input {
+            width: auto;
+            margin: 0 10px 0 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 0;
+            color: #555;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #ddd;
+            padding-top: 18px;
+            margin-top: 10px;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .place-order {
+            width: 100%;
+            padding: 15px;
+            background: #d63384;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .place-order:hover {
+            background: #b5266d;
+        }
+
+        @media (max-width: 800px) {
+
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <header>
+
+        <h1>Radhika General Store</h1>
+
+        <p>Beauty • Cosmetics • Accessories</p>
+
+    </header>
+
+
+    <div class="checkout-container">
+
+        <h2>Checkout</h2>
+
+
+        <div class="checkout-grid">
+
+
+            <!-- CUSTOMER DETAILS -->
+
+            <div>
+
+                <div class="box">
+
+                    <h3>Contact Information</h3>
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="customer-name"
+                        placeholder="Enter your full name"
+                    >
+
+
+                    <label>Mobile Number</label>
+
+                    <input
+                        type="tel"
+                        id="customer-phone"
+                        placeholder="Enter mobile number"
+                    >
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="box">
+
+                    <h3>Delivery Address</h3>
+
+
+                    <label>Address</label>
+
+                    <textarea
+                        id="customer-address"
+                        placeholder="House No., Street, Area"
+                    ></textarea>
+
+
+                    <label>City</label>
+
+                    <input
+                        type="text"
+                        id="customer-city"
+                        placeholder="Enter city"
+                    >
+
+
+                    <label>State</label>
+
+                    <input
+                        type="text"
+                        id="customer-state"
+                        placeholder="Enter state"
+                    >
+
+
+                    <label>Pincode</label>
+
+                    <input
+                        type="text"
+                        id="customer-pincode"
+                        placeholder="Enter pincode"
+                    >
+
+                </div>
+
+
+                <!-- PAYMENT -->
+
+                <div class="box">
+
+                    <h3>Payment Method</h3>
+
+                    <div class="payment">
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                checked
+                            >
+
+                            💵 Cash on Delivery
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ORDER SUMMARY -->
+
+            <div>
+
+                <div class="box">
+
+                    <h3>Order Summary</h3>
+
+                    <div id="checkout-items"></div>
+
+
+                    <div class="summary-row">
+
+                        <span>Subtotal</span>
+
+                        <span id="checkout-subtotal">
+                            ₹0
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Delivery</span>
+
+                        <span>FREE</span>
+
+                    </div>
+
+
+                    <div class="total-row">
+
+                        <span>Total</span>
+
+                        <span id="checkout-total">
+                            ₹0
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="place-order"
+                        onclick="placeOrder()"
+                    >
+                        PLACE ORDER
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function loadCheckout() {
+
+            const cart =
+                JSON.parse(localStorage.getItem("cart")) || [];
+
+            const items =
+                document.getElementById("checkout-items");
+
+            const subtotal =
+                document.getElementById("checkout-subtotal");
+
+            const totalElement =
+                document.getElementById("checkout-total");
+
+
+            let total = 0;
+
+            items.innerHTML = "";
+
+
+            cart.forEach(function(item) {
+
+                const quantity = item.quantity || 1;
+
+                const itemTotal =
+                    item.price * quantity;
+
+                total += itemTotal;
+
+
+                items.innerHTML += `
+
+                    <div class="summary-row">
+
+                        <span>
+                            ${item.name} × ${quantity}
+                        </span>
+
+                        <span>
+                            ₹${itemTotal}
+                        </span>
+
+                    </div>
+
+                `;
+
+            });
+
+
+            subtotal.textContent = "₹" + total;
+
+            totalElement.textContent = "₹" + total;
+
+        }
+
+
+
+        function placeOrder() {
+
+            const name =
+                document
+                .getElementById("customer-name")
+                .value
+                .trim();
+
+
+            const phone =
+                document
+                .getElementById("customer-phone")
+                .value
+                .trim();
+
+
+            const address =
+                document
+                .getElementById("customer-address")
+                .value
+                .trim();
+
+
+            const city =
+                document
+                .getElementById("customer-city")
+                .value
+                .trim();
+
+
+            const state =
+                document
+                .getElementById("customer-state")
+                .value
+                .trim();
+
+
+            const pincode =
+                document
+                .getElementById("customer-pincode")
+                .value
+                .trim();
+
+
+            const cart =
+                JSON.parse(localStorage.getItem("cart")) || [];
+
+
+            if (cart.length === 0) {
+
+                alert("Your cart is empty.");
+
+                return;
+            }
+
+
+            if (
+                !name ||
+                !phone ||
+                !address ||
+                !city ||
+                !state ||
+                !pincode
+            ) {
+
+                alert("Please fill all delivery details.");
+
+                return;
+            }
+
+
+            // ORDER ID
+
+            const orderId =
+                "RGS" + Date.now();
+
+
+            // ORDER ITEMS
+
+            let total = 0;
+
+            let orderItems = "";
+
+
+            cart.forEach(function(item) {
+
+                const quantity =
+                    item.quantity || 1;
+
+                const itemTotal =
+                    item.price * quantity;
+
+                total += itemTotal;
+
+
+                orderItems +=
+                    "• " +
+                    item.name +
+                    " × " +
+                    quantity +
+                    " = ₹" +
+                    itemTotal +
+                    "\n";
+
+            });
+
+
+            // WHATSAPP MESSAGE
+
+            const message =
+`🛍️ *NEW ORDER - RADHIKA GENERAL STORE*
+
+📦 *Order ID:* ${orderId}
+
+*ORDER ITEMS*
+${orderItems}
+💰 *Subtotal:* ₹${total}
+🚚 *Delivery:* FREE
+💵 *Payment:* CASH ON DELIVERY
+
+👤 *CUSTOMER DETAILS*
+Name: ${name}
+Mobile: ${phone}
+
+📍 *DELIVERY ADDRESS*
+${address}
+City: ${city}
+State: ${state}
+Pincode: ${pincode}
+
+Please confirm this order.`;
+
+
+
+            // YOUR WHATSAPP NUMBER
+
+            const whatsappNumber =
+                "917505458511";
+                
+
+
+            const whatsappURL =
+                "https://wa.me/" +
+                whatsappNumber +
+                "?text=" +
+                encodeURIComponent(message);
+
+
+            // OPEN WHATSAPP
+
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
+            setTimeout(function () {
+    window.location.href = "order-success.html";
+}, 1000);
+
+        }
+
+
+        // LOAD CART
+
+        loadCheckout();
+
+    </script>
+
+</body>
+
+</html>

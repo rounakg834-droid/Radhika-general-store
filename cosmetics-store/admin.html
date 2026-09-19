@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Product | Radhika General Store</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+        }
+
+        .admin-header {
+            background: #111;
+            color: white;
+            padding: 20px 6%;
+        }
+
+        .admin-header h1 {
+            margin: 0;
+        }
+
+        .admin-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        .admin-container h2 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .add-product-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #111;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .add-product-btn:hover {
+            background: #d63384;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #111;
+        }
+
+        #preview {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        #message {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-header">
+        <h1>Radhika General Store</h1>
+        <p>Admin - Add Product</p>
+    </div>
+
+    <div class="admin-container">
+
+        <h2>Add New Product</h2>
+
+        <form id="productForm">
+
+            <div class="form-group">
+                <label>Product Image</label>
+
+                <input
+                    type="file"
+                    id="productImage"
+                    accept="image/*"
+                    required
+                >
+
+                <img id="preview" alt="Product Preview">
+            </div>
+
+
+            <div class="form-group">
+                <label>Brand Name</label>
+
+                <input
+                    type="text"
+                    id="brand"
+                    placeholder="Example: Swiss Beauty"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label>Product Name</label>
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Example: Matte Lipstick"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label>Product Description</label>
+
+                <textarea
+                    id="description"
+                    placeholder="Write product description..."
+                    required
+                ></textarea>
+            </div>
+
+
+            <div class="form-group">
+                <label>Category</label>
+
+                <select id="category" required>
+
+                    <option value="">Select Category</option>
+
+                    <option value="Makeup">Makeup</option>
+
+                    <option value="Skincare">Skincare</option>
+
+                    <option value="Hair Care">Hair Care</option>
+
+                    <option value="Fragrance">Fragrance</option>
+
+                    <option value="Nail Care">Nail Care</option>
+
+                    <option value="Bangles">Bangles</option>
+
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label>Selling Price</label>
+
+                <input
+                    type="number"
+                    id="price"
+                    placeholder="399"
+                    min="1"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label>Old Price / MRP</label>
+
+                <input
+                    type="number"
+                    id="oldPrice"
+                    placeholder="499"
+                    min="1"
+                    required
+                >
+            </div>
+
+
+            <button
+                type="submit"
+                class="add-product-btn"
+            >
+                Add Product
+            </button>
+
+        </form>
+
+        <div id="message"></div>
+
+        <a href="index.html" class="back-btn">
+            ← Back to Store
+        </a>
+
+    </div>
+<script>
+
+const imageInput = document.getElementById("productImage");
+const preview = document.getElementById("preview");
+
+
+// IMAGE PREVIEW
+imageInput.addEventListener("change", function () {
+
+    const file = imageInput.files[0];
+
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+    }
+
+});
+
+
+// ADD PRODUCT
+document.getElementById("productForm").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const file = imageInput.files[0];
+
+    if (!file) {
+        alert("Please select a product image");
+        return;
+    }
+
+
+    const reader = new FileReader();
+
+
+    reader.onload = async function() {
+
+        const product = {
+
+            id: Date.now(),
+
+            image: reader.result,
+
+            brand: document.getElementById("brand").value,
+
+            name: document.getElementById("productName").value,
+
+            description: document.getElementById("description").value,
+
+            category: document.getElementById("category").value,
+
+            price: Number(document.getElementById("price").value),
+
+            oldPrice: Number(document.getElementById("oldPrice").value)
+
+        };
+
+
+        // SAVE PRODUCT TO FIREBASE
+
+const { db } = await import("./firebase-config.js");
+
+const { collection, addDoc } =
+    await import("https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js");
+
+await addDoc(
+    collection(db, "products"),
+    product
+);
+
+alert("Product Firebase me successfully save ho gaya!");
+
+
+        // FORM CLEAR
+        document.getElementById("productForm").reset();
+
+        preview.style.display = "none";
+
+
+        // HOME PAGE
+        window.location.href = "index.html";
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+});
+
+</script>
+
+           
+<h2 style="margin-top:40px;">Added Products</h2>
+
+<div id="adminProducts"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const adminProducts = document.getElementById("adminProducts");
+
+    function showAdminProducts() {
+
+        const products =
+            JSON.parse(localStorage.getItem("products")) || [];
+
+        adminProducts.innerHTML = "";
+
+        if (products.length === 0) {
+            adminProducts.innerHTML =
+                "<p>No products added yet.</p>";
+            return;
+        }
+
+        products.forEach(function (product) {
+
+            const box = document.createElement("div");
+
+            box.style.display = "flex";
+            box.style.alignItems = "center";
+            box.style.justifyContent = "space-between";
+            box.style.padding = "12px";
+            box.style.margin = "10px 0";
+            box.style.border = "1px solid #ddd";
+            box.style.borderRadius = "10px";
+            box.style.background = "#fff";
+
+            box.innerHTML = `
+                <div>
+                    <strong>${product.name}</strong>
+                    <br>
+                    <small>${product.brand} | ₹${product.price}</small>
+                </div>
+
+                <button
+                    onclick="deleteProduct(${product.id})"
+                    style="
+                        background:#dc3545;
+                        color:white;
+                        border:none;
+                        padding:8px 14px;
+                        border-radius:6px;
+                        cursor:pointer;
+                    "
+                >
+                    🗑️ Delete
+                </button>
+            `;
+
+            adminProducts.appendChild(box);
+        });
+    }
+
+    showAdminProducts();
+});
+
+
+function deleteProduct(productId) {
+
+    if (!confirm("Kya aap ye product delete karna chahte hain?")) {
+        return;
+    }
+
+    let products =
+        JSON.parse(localStorage.getItem("products")) || [];
+
+    products = products.filter(function (product) {
+        return product.id !== productId;
+    });
+
+    localStorage.setItem(
+        "products",
+        JSON.stringify(products)
+    );
+
+    alert("Product deleted successfully!");
+
+    location.reload();
+}
+</script>
+</body>
+</html>
