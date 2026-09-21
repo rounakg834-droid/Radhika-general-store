@@ -161,7 +161,7 @@ function showCart() {
             <div>Total: ₹${total + 30}</div>
 
             <p style="color:red; font-weight:bold; margin-top:15px;">
-                ₹500 ya usse zyada ka product add karo to order place kar sakte ho.
+                Please add products worth ₹500 or more to place your order.
             </p>
         </div>
 
