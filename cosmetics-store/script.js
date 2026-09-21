@@ -136,15 +136,18 @@ function showCart() {
         `;
     });
 
-    cartTotal.innerHTML = `
-        <div class="total">
-            Total: ₹${total}
-        </div>
+   cartTotal.innerHTML = `
+    <div class="total">
+        <div>Subtotal: ₹${total}</div>
+        <div>Delivery Charge: ₹30</div>
+        <hr>
+        <div>Total: ₹${total + 30}</div>
+    </div>
 
-        <button class="checkout">
-            Proceed to Checkout
-        </button>
-    `;
+    <button class="checkout">
+        Proceed to Checkout
+    </button>
+`;
 }
 
 
