@@ -136,18 +136,42 @@ function showCart() {
         `;
     });
 
-   cartTotal.innerHTML = `
-    <div class="total">
-        <div>Subtotal: ₹${total}</div>
-        <div>Delivery Charge: ₹30</div>
-        <hr>
-        <div>Total: ₹${total + 30}</div>
-    </div>
+   if (total >= 500) {
 
-    <button class="checkout">
-        Proceed to Checkout
-    </button>
-`;
+    cartTotal.innerHTML = `
+        <div class="total">
+            <div>Subtotal: ₹${total}</div>
+            <div>Delivery Charge: ₹30</div>
+            <hr>
+            <div>Total: ₹${total + 30}</div>
+        </div>
+
+        <button class="checkout">
+            Proceed to Checkout
+        </button>
+    `;
+
+} else {
+
+    cartTotal.innerHTML = `
+        <div class="total">
+            <div>Subtotal: ₹${total}</div>
+            <div>Delivery Charge: ₹30</div>
+            <hr>
+            <div>Total: ₹${total + 30}</div>
+
+            <p style="color:red; font-weight:bold; margin-top:15px;">
+                ₹500 ya usse zyada ka product add karo to order place kar sakte ho.
+            </p>
+        </div>
+
+        <button class="checkout" disabled
+            style="background:#ccc; cursor:not-allowed;">
+            Proceed to Checkout
+        </button>
+    `;
+
+}
 }
 
 
