@@ -161,8 +161,8 @@ function showCart() {
             <div>Total: ₹${total + 30}</div>
 
             <p style="color:red; font-weight:bold; margin-top:15px;">
-                Please add products worth ₹500 or more to place your order.
-            </p>
+    Please add products worth ₹500 or more to place your order.
+</p>
         </div>
 
         <button class="checkout" disabled
