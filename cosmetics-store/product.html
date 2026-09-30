@@ -48,18 +48,40 @@
         }
 
         .product-image {
-            width: 100%;
-            height: 500px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #f5f5f5;
-        }
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    background: #f5f5f5;
+}
 
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.product-image > #productImage {
+    width: 100%;
+    height: 500px;
+    display: block;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.product-thumbnails {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.product-thumbnails img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 3px;
+    cursor: pointer;
+    background: white;
+}
+
+.product-thumbnails img:hover {
+    border-color: #111;
+}
 
         .product-info {
             padding: 20px 0;
@@ -169,10 +191,29 @@
 
 
     <div class="product-details">
+<div class="product-image">
 
-        <div class="product-image">
-            <img id="productImage" src="" alt="Product">
-        </div>
+    <img id="productImage" src="" alt="Product">
+
+    <div class="product-thumbnails">
+
+        <img
+            id="frontThumbnail"
+            src=""
+            alt="Front"
+            onclick="showProductImage('front')"
+        >
+
+        <img
+            id="backThumbnail"
+            src=""
+            alt="Back"
+            onclick="showProductImage('back')"
+        >
+
+    </div>
+
+</div>
 
 
         <div class="product-info">
@@ -263,10 +304,14 @@ if (!product) {
     `;
 
 } else {
+document.getElementById("productImage").src =
+    product.image;
 
-    document.getElementById("productImage").src =
-        product.image;
+document.getElementById("frontThumbnail").src =
+    product.image;
 
+document.getElementById("backThumbnail").src =
+    product.backImage || product.image;
     document.getElementById("brand").textContent =
         product.brand;
 
@@ -363,6 +408,23 @@ if (!product) {
             alert("Product added to cart!");
 
         }
+        window.showProductImage = function(type) {
+
+    if (type === "front") {
+
+        document.getElementById("productImage").src =
+            document.getElementById("frontThumbnail").src;
+
+    }
+
+    if (type === "back") {
+
+        document.getElementById("productImage").src =
+            document.getElementById("backThumbnail").src;
+
+    }
+
+};
 
     </script>
 
